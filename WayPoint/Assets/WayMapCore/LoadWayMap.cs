@@ -15,7 +15,7 @@ public class LoadWayMap : MonoBehaviour
 
         WayPointManager.instance = new WayPointManager(levelCfg.config);
 
-        points = new List<Vertex>();
+        // points = new List<Vertex>();
     }
 
     // Update is called once per frame
@@ -31,18 +31,21 @@ public class LoadWayMap : MonoBehaviour
         if (points == null)
         {
             points = new List<Vertex>();
-        }
-        else
-        {
-            points.Clear();
+            WayPointManager.instance.GetVertexList(ref points);
         }
 
-
-        WayPointManager.instance.GetVertexList(ref points);
 
         foreach (var point in points)
         {
+            Gizmos.color = VertexGraph.PointColors[point.Data.mapId];
             Gizmos.DrawSphere(point.Data.position, 0.55f);
+
+            foreach (var item in point.neighbours)
+            {
+                Gizmos.color = VertexGraph.PointColors[item.Data.mapId];
+
+                Gizmos.DrawLine(point.Data.position, item.Data.position);
+            }
         }
     }
 }

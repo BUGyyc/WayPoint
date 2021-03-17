@@ -45,6 +45,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\AgentMove.cs" />
      <Compile Include="Assets\Shared\ProtocolDef\ProtoEditor.cs" />
      <Compile Include="Assets\WayMapCore\Global.cs" />
      <Compile Include="Assets\WayMapCore\LayerMaskUtil.cs" />

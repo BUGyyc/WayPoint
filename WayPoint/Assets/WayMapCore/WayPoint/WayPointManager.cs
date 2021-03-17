@@ -101,19 +101,6 @@ public class WayPointManager
         list = localEdges;
     }
 
-    // public Vertex GetVertexById(uint id, uint typeId = 0)
-    // {
-    //     VertexGraph vGraph = GetVertexGraph(typeId);
-    //     if (vGraph == null)
-    //     {
-    //         return null;
-    //     }
-    //     else
-    //     {
-    //         return vGraph.GetVertexById(id);
-    //     }
-    // }
-
     public void GetEdgeVertex(ref List<Vertex> list, uint mapId, uint typeId = 0)
     {
         VertexGraph vGraph = GetVertexGraph(typeId);
@@ -133,12 +120,12 @@ public class WayPointManager
     {
         Vertex start = FindNearVertex(origin, wayMapId, typeId);
         Vertex end = FindNearVertex(target, wayMapId, typeId);
-        FindPath(ref path, start, end, Vector3.zero, 0, typeId, test);
+        FindPath(ref path, start, end, Vector3.zero, test);
     }
 
-    public void FindPath(ref List<Vertex> path, Vertex origin, Vertex target, Vector3 start, uint entityId, uint typeId = 0, bool test = false)
+    public void FindPath(ref List<Vertex> path, Vertex origin, Vertex target, Vector3 start, bool test = false)
     {
-        VertexGraph vertexGraph = GetVertexGraph(typeId);
+        VertexGraph vertexGraph = GetVertexGraph(0);
 
         if (vertexGraph == null)
         {
@@ -165,7 +152,7 @@ public class WayPointManager
                     sb.Append(" -> ");
                 }
                 //float dis = Vector3.Distance(start, origin.Data.position);
-                Debug.LogFormat("entityId:{0}  FindPath 查找路径 path: {1}", entityId, sb.ToString());
+                Debug.LogFormat("  FindPath 查找路径 path: {1}", sb.ToString());
             }
 
         }
