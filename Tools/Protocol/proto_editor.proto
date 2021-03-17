@@ -1,0 +1,38 @@
+syntax = "proto2";
+
+package Protocol;
+
+//路点配置
+message WayMapCfg
+{
+	repeated WayPointCfg points								= 1;//点集合
+	repeated WayLineCfg lines								= 2;//线集合
+}
+
+//图  点配置
+message WayPointCfg
+{
+	required uint32 id										= 1;
+	required uint32 mapId									= 2;//所属类型ID
+	required Float3 position								= 3;
+	optional Float3 forward									= 4;
+	optional float minStandTime								= 5;
+	optional float maxStandTime								= 6;
+	
+	optional uint32 type									= 7;
+	optional uint32 line_count								= 8;
+	optional float pass_line_time							= 9;
+	
+	optional bool need_offset								= 10;
+	optional float offset_value								= 11;
+}
+
+//图  线配置
+message WayLineCfg
+{
+	required WayPointCfg head 								= 1;
+	required WayPointCfg last								= 2;
+	required float cost										= 3;
+	required bool is_one_way								= 4;
+}
+
