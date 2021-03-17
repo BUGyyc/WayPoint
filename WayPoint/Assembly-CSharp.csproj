@@ -48,14 +48,17 @@
      <Compile Include="Assets\Shared\ProtocolDef\ProtoEditor.cs" />
      <Compile Include="Assets\WayMapCore\Global.cs" />
      <Compile Include="Assets\WayMapCore\LayerMaskUtil.cs" />
+     <Compile Include="Assets\WayMapCore\LoadWayMap.cs" />
      <Compile Include="Assets\WayMapCore\Tool\Float3Util.cs" />
      <Compile Include="Assets\WayMapCore\Tool\LevelConfig.cs" />
+     <Compile Include="Assets\WayMapCore\Tool\LevelConfigTool.cs" />
      <Compile Include="Assets\WayMapCore\Tool\Toolkit.cs" />
      <Compile Include="Assets\WayMapCore\Tool\WayLineItem.cs" />
      <Compile Include="Assets\WayMapCore\Tool\WayPointItem.cs" />
      <Compile Include="Assets\WayMapCore\WayPoint\Vertex.cs" />
      <Compile Include="Assets\WayMapCore\WayPoint\VertexGraph.cs" />
      <Compile Include="Assets\WayMapCore\WayPoint\VertexObj.cs" />
+     <Compile Include="Assets\WayMapCore\WayPoint\WayPointManager.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

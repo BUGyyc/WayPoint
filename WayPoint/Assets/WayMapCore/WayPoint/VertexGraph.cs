@@ -2,7 +2,7 @@
  * @Author: delevin.ying 
  * @Date: 2020-07-15 19:25:25 
  * @Last Modified by: delevin.ying
- * @Last Modified time: 2021-03-17 12:25:36
+ * @Last Modified time: 2021-03-17 16:21:39
 https://www.itread01.com/content/1508047085.html
  */
 
@@ -28,10 +28,6 @@ public class VertexGraph
     private Dictionary<int, float> edges;
     //存储已知的最短路径
     private Dictionary<int, List<Vertex>> paths = null;
-
-    //private Dictionary<int, float> pathLen = null;//路径长度
-
-    // private StringBuilder sb = new StringBuilder();
 
     public static readonly Color[] PointColors = new Color[]{
             Color.yellow,

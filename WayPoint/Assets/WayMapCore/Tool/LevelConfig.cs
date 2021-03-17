@@ -28,12 +28,12 @@ namespace GameEditor
         }
 
         //导出
-        public void Export(string path)
+        public void Export(string path,string name)
         {
             WayMapCfg wayMapCfg = new WayMapCfg();
             AddWayMapToCfg(wayMapCfg);
             var bytes = wayMapCfg.ToByteArray();
-            if (Toolkit.SaveFile(bytes, path + this.name + ".bytes"))
+            if (Toolkit.SaveFile(bytes, path + name + ".bytes"))
             {
                 UnityEngine.Debug.Log("保存完毕:" + path);
             }

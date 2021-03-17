@@ -2,7 +2,7 @@
  * @Author: delevin.ying 
  * @Date: 2021-03-17 11:53:13 
  * @Last Modified by: delevin.ying
- * @Last Modified time: 2021-03-17 15:09:42
+ * @Last Modified time: 2021-03-17 15:58:41
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -31,10 +31,11 @@ public class LevelEditorWindow : EditorWindow
             }
         }
         
-        // private Scene mConfigScene;
+        static readonly string LEVEL_EXPORT_PATH = Application.streamingAssetsPath + "/Levels/";
+
         private Vector3 mouseDownPosition;
         private long mouseDownTime;
-        private string mLevelName = "";
+        private string mLevelName = "level_01";
 
         private LevelConfig mCurrentCfg;
 
@@ -54,7 +55,9 @@ public class LevelEditorWindow : EditorWindow
             if(mCurrentCfg == null)
             {
                 GameObject obj = GameObject.Find("LevelCfg");
-                mCurrentCfg = obj.GetComponent<LevelConfig>();
+                if(obj != null){
+                    mCurrentCfg = obj.GetComponent<LevelConfig>();
+                }
             }
         }
 
@@ -92,7 +95,7 @@ public class LevelEditorWindow : EditorWindow
                     }
                     else
                     {
-                        // Debug.LogError("DrawLine ----> 失败  " + startTransform + "  " + endTransform);
+                        Debug.LogError("DrawLine ----> 失败  " + startTransform + "  " + endTransform);
                     }
                 }
             }
@@ -150,14 +153,44 @@ public class LevelEditorWindow : EditorWindow
             GUILayout.EndVertical();
         }
 
+        private void refreshList()
+        {
+            mConfigScene = default;
+            mCurrentCfg = null;
+
+            var scene = EditorSceneManager.GetActiveScene();
+
+            var rootObject = scene.GetRootGameObjects();
+
+            for (int i = 0; i < rootObject.Length; i++)
+            {
+                var lc = rootObject[i].GetComponent<LevelConfig>();
+
+                if (lc)
+                {
+                    mCurrentCfg = lc;
+                    mConfigScene = scene;
+                    break;
+                }
+            }
+        }
+
         private void DrawLevelList()
         {
             GUILayout.Space(3);
+
+            if (GUILayout.Button("刷新"))
+            {
+                refreshList();
+            }
+
 
             if (GUILayout.Button("保存至本地"))
             {
                 Save2Cfg(mLevelName);
             }
+
+            
 
             GUILayout.Space(10);
         }
@@ -183,7 +216,7 @@ public class LevelEditorWindow : EditorWindow
                 return;
             }
             
-            
+            mCurrentCfg.Export(LEVEL_EXPORT_PATH,"level_01");
         }
 
         private bool OnShiftDown(SceneView sceneView)
