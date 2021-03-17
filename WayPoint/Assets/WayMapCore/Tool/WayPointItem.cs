@@ -2,7 +2,7 @@
  * @Author: delevin.ying 
  * @Date: 2020-06-23 15:27:44 
  * @Last Modified by: delevin.ying
- * @Last Modified time: 2021-03-17 12:21:09
+ * @Last Modified time: 2021-03-17 15:02:14
  */
 
 using UnityEngine;
@@ -14,13 +14,10 @@ namespace GameEditor
     [ExecuteInEditMode]
     public class WayPointItem : MonoBehaviour
     {
-        [Header("所属Map ID")]
-        public uint mapId = 0;
+        public uint mapId;
+        public uint id;
         public List<GameObject> lines;//记录所有的线
         private List<Transform> neights;
-        public uint id;
-        public uint type = 0;
-
         public uint ID
         {
             get
@@ -41,14 +38,14 @@ namespace GameEditor
                 return (uint)lines.Count;
             }
         }
-        // public Vector3 forward = Vector3.zero;
-        public bool hasForward = false;
-        //public float passLineTime = 0f;
-        public float minStandTime = 0f;
-        public float maxStandTime = 0f;
 
-        public bool need_offset = false;
-        public float offset_value = 1;
+        // public bool hasForward = false;
+        // //public float passLineTime = 0f;
+        // public float minStandTime = 0f;
+        // public float maxStandTime = 0f;
+
+        // public bool need_offset = false;
+        // public float offset_value = 1;
 
         private GUIStyle style = null;
 
@@ -156,7 +153,7 @@ namespace GameEditor
         private void OnDrawGizmos()
         {
             DrawWayPoint();
-            DrawStandPoint();
+            // DrawStandPoint();
         }
 
         private void DrawWayPoint()
@@ -168,8 +165,8 @@ namespace GameEditor
             colorIndex = Mathf.Max(0, colorIndex);
             Gizmos.color = VertexGraph.PointColors[colorIndex];
 
-            if (type == 0)
-            {
+            // if (type == 0)
+            // {
                 Gizmos.DrawSphere(this.transform.position, 0.55f);
 
                 Gizmos.color = Color.red;
@@ -185,11 +182,11 @@ namespace GameEditor
                 {
                     Gizmos.DrawWireSphere(this.transform.position, 1f);
                 }
-            }
-            else
-            {
-                Gizmos.DrawCube(this.transform.position, Vector3.one * 1.2f);
-            }
+            // }
+            // else
+            // {
+            //     Gizmos.DrawCube(this.transform.position, Vector3.one * 1.2f);
+            // }
             Gizmos.color = VertexGraph.PointColors[colorIndex];
             if (neights == null || neights.Count < 1)
             {
@@ -225,9 +222,9 @@ namespace GameEditor
             // dir.y = 0;
             // Gizmos.color = Color.blue;
             // Gizmos.DrawLine(transform.position, transform.position + dir);
-            if (hasForward == false) return;
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(transform.position, transform.forward + transform.position);
+            // if (hasForward == false) return;
+            // Gizmos.color = Color.blue;
+            // Gizmos.DrawLine(transform.position, transform.forward + transform.position);
         }
 
         private void OnDestroy()

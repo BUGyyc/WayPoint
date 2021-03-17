@@ -1,8 +1,8 @@
 /*
  * @Author: delevin.ying 
  * @Date: 2021-03-17 12:20:32 
- * @Last Modified by:   delevin.ying 
- * @Last Modified time: 2021-03-17 12:20:32 
+ * @Last Modified by: delevin.ying
+ * @Last Modified time: 2021-03-17 15:10:48
  */
 
 using UnityEngine;
@@ -23,8 +23,6 @@ namespace GameEditor
         public float Value = 0;
         [Header("是否自动设置权重值")]
         public bool isAuto = true;
-        public uint type = 0;
-
         [Header("是否是单方向路线")]
         public bool IsOneWay = true;
 

@@ -2,7 +2,7 @@
  * @Author: delevin.ying 
  * @Date: 2021-03-17 11:53:13 
  * @Last Modified by: delevin.ying
- * @Last Modified time: 2021-03-17 14:55:15
+ * @Last Modified time: 2021-03-17 15:09:42
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -51,7 +51,6 @@ public class LevelEditorWindow : EditorWindow
         private void OnEnable()
         {
             SceneView.duringSceneGui += OnSceneGUI;
-            EditorApplication.playModeStateChanged += OnStateChange;
             if(mCurrentCfg == null)
             {
                 GameObject obj = GameObject.Find("LevelCfg");
@@ -59,12 +58,11 @@ public class LevelEditorWindow : EditorWindow
             }
         }
 
-        private void OnStateChange(PlayModeStateChange obj)
-        {
 
-                
-            
-        }
+        private bool isDrawLine = false;
+        private bool startDrawLine = false;
+        private Transform startTransform = null;
+        private Transform endTransform = null;
 
         private void OnSceneGUI(SceneView sceneView)
         {
@@ -72,6 +70,31 @@ public class LevelEditorWindow : EditorWindow
             {
                 mouseDownPosition = Event.current.mousePosition;
                 mouseDownTime = DateTime.Now.Ticks;
+            }
+
+            if (Event.current.capsLock)
+            {
+                if (!isDrawLine)
+                {
+                    isDrawLine = OnShiftDown(sceneView);
+                }
+            }
+            else
+            {
+                if (isDrawLine)
+                {
+                    isDrawLine = false;
+                    bool result = OnShiftUp(sceneView);
+                    if (result)
+                    {
+                        CreateLine();
+                        Selection.activeObject = endTransform.gameObject;
+                    }
+                    else
+                    {
+                        // Debug.LogError("DrawLine ----> 失败  " + startTransform + "  " + endTransform);
+                    }
+                }
             }
 
             if (Event.current.button == 1 && Event.current.type == EventType.MouseUp && DateTime.Now.Ticks - mouseDownTime < 2000000)
@@ -163,6 +186,137 @@ public class LevelEditorWindow : EditorWindow
             
         }
 
+        private bool OnShiftDown(SceneView sceneView)
+        {
+            GameObject obj = Selection.activeObject as GameObject;
+            if (obj == null) return false;
+            if (obj.name.Equals("CfgPrefab(Clone)") == false)
+            {
+                return false;
+            }
+            startTransform = obj.transform;
+            startDrawLine = true;
+            return true;
+        }
+
+
+        private bool OnShiftUp(SceneView sceneView)
+        {
+            GameObject obj = Selection.activeObject as GameObject;
+            if (obj == null) return false;
+            if (obj.name.Equals("CfgPrefab(Clone)") == false)
+            {
+                return false;
+            }
+            endTransform = obj.transform;
+            startDrawLine = false;
+            return true;
+        }
+
+        private void CreateLine()
+        {
+            OnCreateLineByTf(startTransform, endTransform);
+        }
+
+        private Transform OnCreateLineByTf(Transform startTransform, Transform endTransform)
+        {
+            WayPointItem startPoint = startTransform.gameObject.GetComponent<WayPointItem>();
+            WayPointItem endPoint = endTransform.gameObject.GetComponent<WayPointItem>();
+            if (startPoint == null || endPoint == null)
+            {
+                Debug.LogError("生成失败 ---- startPoint endPoint ");
+                return null;
+            }
+            else
+            {
+                uint headMapId = startPoint.mapId;
+                uint lastMapId = endPoint.mapId;
+
+                // uint type = startPoint.type;
+
+                // uint startType = startPoint.type;
+                // uint endType = endPoint.type;
+                // if (startType != endType)
+                // {
+                //     Debug.LogErrorFormat("Error startType != endType  {0}  {1} ", startType, endType);
+                //     return null;
+                // }
+
+                if (headMapId == 0 && lastMapId == 0)
+                {
+                    Debug.LogError("生成失败 ---- 两路点都未分配mapId ");
+                    return null;
+                }
+                else if (headMapId != lastMapId && headMapId * lastMapId != 0)
+                {
+                    //二者都不为0，且不相等
+                }
+                else
+                {
+                    //一个为0，另一个不为0
+                    if (headMapId == 0)
+                    {
+                        headMapId = lastMapId;
+                    }
+                    else
+                    {
+                        lastMapId = headMapId;
+                    }
+                }
+
+                GameObject go = GameObject.Instantiate(prefab);
+                go.name = "WayLineItem";
+                go.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                WayLineItem wayLineItem = go.AddComponent<WayLineItem>();
+                wayLineItem.head = startTransform;
+                wayLineItem.last = endTransform;
+                wayLineItem.headMapId = headMapId;
+                wayLineItem.lastMapId = lastMapId;
+                // wayLineItem.type = type;
+                MeshRenderer renderer = go.GetComponent<MeshRenderer>();
+                renderer.material = null;
+                go.transform.SetParent(mCurrentCfg.wayLineRoot.transform, false);
+                Vector3 position = (startTransform.position + endTransform.position) / 2;
+                go.transform.position = position;
+                EditorSceneManager.MarkSceneDirty(mConfigScene);
+                GameObject startObj = startTransform.gameObject;
+                GameObject endObj = endTransform.gameObject;
+                bool r1 = AddLineToObj(startObj, go);
+                bool r2 = AddLineToObj(endObj, go);
+                if (r1 == false || r2 == false)
+                {
+                    DestroyImmediate(go);
+                }
+                else
+                {
+                    startObj.GetComponent<WayPointItem>().mapId = headMapId;
+                    endObj.GetComponent<WayPointItem>().mapId = lastMapId;
+                    Selection.activeObject = endTransform.gameObject;
+                }
+                return go.transform;
+            }
+        }
+
+        private bool AddLineToObj(GameObject obj, GameObject line)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else
+            {
+                WayPointItem point = obj.GetComponent<WayPointItem>();
+                if (point)
+                {
+                    return point.AddLine(line);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         private void DrawLevelEditor()
         {
 
@@ -205,13 +359,13 @@ public class LevelEditorWindow : EditorWindow
                 go.transform.SetParent(root.transform, false);
                 go.transform.position = (Vector3)position;
                 wpi.ID = id;
-                wpi.type = type;
+                // wpi.type = type;
                 Selection.activeObject = go;
-                if (wayPointType == 1)
-                {
-                    wpi.minStandTime = 5;
-                    wpi.maxStandTime = 20;
-                }
+                // if (wayPointType == 1)
+                // {
+                //     wpi.minStandTime = 5;
+                //     wpi.maxStandTime = 20;
+                // }
                 UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(mConfigScene);
             }
             else

@@ -51,29 +51,29 @@ namespace GameEditor
                 wayPointCfg.Position = item.transform.position.ToFloat3();
                 wayPointCfg.MapId = item.mapId;
                 wayPointCfg.LineCount = item.lineCount;
-                if (item.hasForward)
-                {
-                    wayPointCfg.Forward = item.transform.forward.ToFloat3();
-                }
-                if (item.maxStandTime != 0 || item.minStandTime != 0)
-                {
-                    if (item.maxStandTime >= item.minStandTime)
-                    {
-                        wayPointCfg.MaxStandTime = item.maxStandTime;
-                        wayPointCfg.MinStandTime = item.minStandTime;
-                    }
-                }
-                wayPointCfg.NeedOffset = item.need_offset;
-                wayPointCfg.OffsetValue = item.offset_value;
+                // if (item.hasForward)
+                // {
+                //     wayPointCfg.Forward = item.transform.forward.ToFloat3();
+                // }
+                // if (item.maxStandTime != 0 || item.minStandTime != 0)
+                // {
+                //     if (item.maxStandTime >= item.minStandTime)
+                //     {
+                //         wayPointCfg.MaxStandTime = item.maxStandTime;
+                //         wayPointCfg.MinStandTime = item.minStandTime;
+                //     }
+                // }
+                // wayPointCfg.NeedOffset = item.need_offset;
+                // wayPointCfg.OffsetValue = item.offset_value;
                 wayMapCfg.AddPoints(wayPointCfg);
             }
             Debug.Log("开始导出线  ");
             foreach (var item in lines)
             {
                 WayPointItem headPoint = item.head.transform.gameObject.GetComponent<WayPointItem>();
-                WayPointCfg head = GetWayPointCfg(headPoint.ID, headPoint.type, wayMapCfg);
+                WayPointCfg head = GetWayPointCfg(headPoint.ID, wayMapCfg);
                 WayPointItem lastPoint = item.last.transform.gameObject.GetComponent<WayPointItem>();
-                WayPointCfg last = GetWayPointCfg(lastPoint.ID, headPoint.type, wayMapCfg);
+                WayPointCfg last = GetWayPointCfg(lastPoint.ID, wayMapCfg);
                 WayLineCfg wayLineCfg = new WayLineCfg();
                 if (head == null || last == null)
                 {
@@ -91,7 +91,7 @@ namespace GameEditor
             Debug.Log("导出路点导航数据  ");
         }
 
-        private WayPointCfg GetWayPointCfg(uint id, uint type, WayMapCfg wayMapCfg)
+        private WayPointCfg GetWayPointCfg(uint id, WayMapCfg wayMapCfg)
         {
             foreach (var item in wayMapCfg.Points)
             {
