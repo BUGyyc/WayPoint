@@ -9,6 +9,9 @@ public class AgentMove : MonoBehaviour
     List<Vertex> targetList;
 
     List<Vector3> moveList;
+
+    float Gravity = 9.8f;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -26,16 +29,33 @@ public class AgentMove : MonoBehaviour
 
     private void MoveLogic()
     {
+
+        float deltaY = 0;
+        if (characterController.isGrounded == false)
+        {
+            deltaY = -1 * Time.deltaTime * Gravity;
+        }
+        else
+        {
+            deltaY = 0;
+        }
+
+
         if (moveList == null || moveList.Count == 0) return;
 
         Vector3 curTarget = moveList[0];
-        if (Vector3.Distance(curTarget, this.transform.position) < 0.2f)
+        float dis = Vector3.Distance(curTarget, this.transform.position);
+        if (dis < 1.5f)
         {
             moveList.RemoveAt(0);
         }
         else
         {
-            characterController.Move(curTarget);
+            transform.LookAt(new Vector3(curTarget.x, transform.position.y, curTarget.z));
+            Vector3 moveDir = transform.forward * UnityEngine.Time.deltaTime * 10;
+            //Y轴计算
+            moveDir += new Vector3(0, deltaY, 0);
+            characterController.Move(moveDir);
         }
     }
 
