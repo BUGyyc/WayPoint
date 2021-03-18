@@ -37,19 +37,13 @@ namespace Protocol {
             "ChJwcm90b19lZGl0b3IucHJvdG8SCFByb3RvY29sImYKCVdheU1hcENmZxIt", 
             "CgZwb2ludHMYASADKAsyFS5Qcm90b2NvbC5XYXlQb2ludENmZ1IGcG9pbnRz", 
             "EioKBWxpbmVzGAIgAygLMhQuUHJvdG9jb2wuV2F5TGluZUNmZ1IFbGluZXMi", 
-            "8gIKC1dheVBvaW50Q2ZnEg4KAmlkGAEgAigNUgJpZBIUCgVtYXBJZBgCIAIo", 
-            "DVIFbWFwSWQSLAoIcG9zaXRpb24YAyACKAsyEC5Qcm90b2NvbC5GbG9hdDNS", 
-            "CHBvc2l0aW9uEioKB2ZvcndhcmQYBCABKAsyEC5Qcm90b2NvbC5GbG9hdDNS", 
-            "B2ZvcndhcmQSIgoMbWluU3RhbmRUaW1lGAUgASgCUgxtaW5TdGFuZFRpbWUS", 
-            "IgoMbWF4U3RhbmRUaW1lGAYgASgCUgxtYXhTdGFuZFRpbWUSEgoEdHlwZRgH", 
-            "IAEoDVIEdHlwZRIdCgpsaW5lX2NvdW50GAggASgNUglsaW5lQ291bnQSJAoO", 
-            "cGFzc19saW5lX3RpbWUYCSABKAJSDHBhc3NMaW5lVGltZRIfCgtuZWVkX29m", 
-            "ZnNldBgKIAEoCFIKbmVlZE9mZnNldBIhCgxvZmZzZXRfdmFsdWUYCyABKAJS", 
-            "C29mZnNldFZhbHVlIpQBCgpXYXlMaW5lQ2ZnEikKBGhlYWQYASACKAsyFS5Q", 
-            "cm90b2NvbC5XYXlQb2ludENmZ1IEaGVhZBIpCgRsYXN0GAIgAigLMhUuUHJv", 
-            "dG9jb2wuV2F5UG9pbnRDZmdSBGxhc3QSEgoEY29zdBgDIAIoAlIEY29zdBIc", 
-            "Cgppc19vbmVfd2F5GAQgAigIUghpc09uZVdheSIyCgZGbG9hdDMSDAoBeBgB", 
-          "IAEoAlIBeBIMCgF5GAIgASgCUgF5EgwKAXoYAyABKAJSAXo="));
+            "YQoLV2F5UG9pbnRDZmcSDgoCaWQYASACKA1SAmlkEhQKBW1hcElkGAIgAigN", 
+            "UgVtYXBJZBIsCghwb3NpdGlvbhgDIAIoCzIQLlByb3RvY29sLkZsb2F0M1II", 
+            "cG9zaXRpb24ilAEKCldheUxpbmVDZmcSKQoEaGVhZBgBIAIoCzIVLlByb3Rv", 
+            "Y29sLldheVBvaW50Q2ZnUgRoZWFkEikKBGxhc3QYAiACKAsyFS5Qcm90b2Nv", 
+            "bC5XYXlQb2ludENmZ1IEbGFzdBISCgRjb3N0GAMgAigCUgRjb3N0EhwKCmlz", 
+            "X29uZV93YXkYBCACKAhSCGlzT25lV2F5IjIKBkZsb2F0MxIMCgF4GAEgASgC", 
+          "UgF4EgwKAXkYAiABKAJSAXkSDAoBehgDIAEoAlIBeg=="));
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_Protocol_WayMapCfg__Descriptor = Descriptor.MessageTypes[0];
@@ -59,7 +53,7 @@ namespace Protocol {
         internal__static_Protocol_WayPointCfg__Descriptor = Descriptor.MessageTypes[1];
         internal__static_Protocol_WayPointCfg__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Protocol.WayPointCfg, global::Protocol.WayPointCfg.Builder>(internal__static_Protocol_WayPointCfg__Descriptor,
-                new string[] { "Id", "MapId", "Position", "Forward", "MinStandTime", "MaxStandTime", "Type", "LineCount", "PassLineTime", "NeedOffset", "OffsetValue", });
+                new string[] { "Id", "MapId", "Position", });
         internal__static_Protocol_WayLineCfg__Descriptor = Descriptor.MessageTypes[2];
         internal__static_Protocol_WayLineCfg__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::Protocol.WayLineCfg, global::Protocol.WayLineCfg.Builder>(internal__static_Protocol_WayLineCfg__Descriptor,
@@ -534,8 +528,8 @@ namespace Protocol {
   public sealed partial class WayPointCfg : pb::GeneratedMessage<WayPointCfg, WayPointCfg.Builder> {
     public WayPointCfg() { }
     private static readonly WayPointCfg defaultInstance = new WayPointCfg().MakeReadOnly();
-    private static readonly string[] _wayPointCfgFieldNames = new string[] { "forward", "id", "line_count", "mapId", "maxStandTime", "minStandTime", "need_offset", "offset_value", "pass_line_time", "position", "type" };
-    private static readonly uint[] _wayPointCfgFieldTags = new uint[] { 34, 8, 64, 16, 53, 45, 80, 93, 77, 26, 56 };
+    private static readonly string[] _wayPointCfgFieldNames = new string[] { "id", "mapId", "position" };
+    private static readonly uint[] _wayPointCfgFieldTags = new uint[] { 8, 16, 26 };
     public static WayPointCfg DefaultInstance {
       get { return defaultInstance; }
     }
@@ -603,127 +597,6 @@ namespace Protocol {
       }
     }
     
-    public const int ForwardFieldNumber = 4;
-    private bool hasForward;
-    private global::Protocol.Float3 forward_;
-    public bool HasForward {
-      get { return hasForward; }
-    }
-    public global::Protocol.Float3 Forward {
-      get { return forward_; }
-      set { hasForward = true;
-        forward_ = value;}
-    }
-    public void MergeForward(global::Protocol.Float3 value, bool isFull = false) {
-      pb::ThrowHelper.ThrowIfNull(value, "value");
-      if (HasForward &&
-        forward_ != global::Protocol.Float3.DefaultInstance) {
-        forward_.MergeFrom(value, isFull);
-      } else {
-        forward_ = value;
-      }
-    }
-    
-    public const int MinStandTimeFieldNumber = 5;
-    private bool hasMinStandTime;
-    private bool isMinStandTimeChanged = true;
-    private float minStandTime_;
-    public bool HasMinStandTime {
-      get { return hasMinStandTime; }
-    }
-    public float MinStandTime {
-      get { return minStandTime_; }
-      set { hasMinStandTime = true;
-        isMinStandTimeChanged = true;
-        minStandTime_ = value;}
-    }
-    
-    public const int MaxStandTimeFieldNumber = 6;
-    private bool hasMaxStandTime;
-    private bool isMaxStandTimeChanged = true;
-    private float maxStandTime_;
-    public bool HasMaxStandTime {
-      get { return hasMaxStandTime; }
-    }
-    public float MaxStandTime {
-      get { return maxStandTime_; }
-      set { hasMaxStandTime = true;
-        isMaxStandTimeChanged = true;
-        maxStandTime_ = value;}
-    }
-    
-    public const int TypeFieldNumber = 7;
-    private bool hasType;
-    private bool isTypeChanged = true;
-    private uint type_;
-    public bool HasType {
-      get { return hasType; }
-    }
-    [global::System.CLSCompliant(false)]
-    public uint Type {
-      get { return type_; }
-      set { hasType = true;
-        isTypeChanged = true;
-        type_ = value;}
-    }
-    
-    public const int LineCountFieldNumber = 8;
-    private bool hasLineCount;
-    private bool isLineCountChanged = true;
-    private uint lineCount_;
-    public bool HasLineCount {
-      get { return hasLineCount; }
-    }
-    [global::System.CLSCompliant(false)]
-    public uint LineCount {
-      get { return lineCount_; }
-      set { hasLineCount = true;
-        isLineCountChanged = true;
-        lineCount_ = value;}
-    }
-    
-    public const int PassLineTimeFieldNumber = 9;
-    private bool hasPassLineTime;
-    private bool isPassLineTimeChanged = true;
-    private float passLineTime_;
-    public bool HasPassLineTime {
-      get { return hasPassLineTime; }
-    }
-    public float PassLineTime {
-      get { return passLineTime_; }
-      set { hasPassLineTime = true;
-        isPassLineTimeChanged = true;
-        passLineTime_ = value;}
-    }
-    
-    public const int NeedOffsetFieldNumber = 10;
-    private bool hasNeedOffset;
-    private bool isNeedOffsetChanged = true;
-    private bool needOffset_;
-    public bool HasNeedOffset {
-      get { return hasNeedOffset; }
-    }
-    public bool NeedOffset {
-      get { return needOffset_; }
-      set { hasNeedOffset = true;
-        isNeedOffsetChanged = true;
-        needOffset_ = value;}
-    }
-    
-    public const int OffsetValueFieldNumber = 11;
-    private bool hasOffsetValue;
-    private bool isOffsetValueChanged = true;
-    private float offsetValue_;
-    public bool HasOffsetValue {
-      get { return hasOffsetValue; }
-    }
-    public float OffsetValue {
-      get { return offsetValue_; }
-      set { hasOffsetValue = true;
-        isOffsetValueChanged = true;
-        offsetValue_ = value;}
-    }
-    
     public override bool IsInitialized {
       get {
         if (!hasId) return false;
@@ -737,37 +610,13 @@ namespace Protocol {
       CalcSerializedSize();
       string[] field_names = _wayPointCfgFieldNames;
       if (hasId) {
-        output.WriteUInt32(1, field_names[1], Id);
+        output.WriteUInt32(1, field_names[0], Id);
       }
       if (hasMapId) {
-        output.WriteUInt32(2, field_names[3], MapId);
+        output.WriteUInt32(2, field_names[1], MapId);
       }
       if (hasPosition) {
-        output.WriteMessage(3, field_names[9], Position);
-      }
-      if (hasForward) {
-        output.WriteMessage(4, field_names[0], Forward);
-      }
-      if (hasMinStandTime) {
-        output.WriteFloat(5, field_names[5], MinStandTime);
-      }
-      if (hasMaxStandTime) {
-        output.WriteFloat(6, field_names[4], MaxStandTime);
-      }
-      if (hasType) {
-        output.WriteUInt32(7, field_names[10], Type);
-      }
-      if (hasLineCount) {
-        output.WriteUInt32(8, field_names[2], LineCount);
-      }
-      if (hasPassLineTime) {
-        output.WriteFloat(9, field_names[8], PassLineTime);
-      }
-      if (hasNeedOffset) {
-        output.WriteBool(10, field_names[6], NeedOffset);
-      }
-      if (hasOffsetValue) {
-        output.WriteFloat(11, field_names[7], OffsetValue);
+        output.WriteMessage(3, field_names[2], Position);
       }
       UnknownFields.WriteTo(output);
     }
@@ -790,30 +639,6 @@ namespace Protocol {
       if (hasPosition) {
         size += pb::CodedOutputStream.ComputeMessageSize(3, Position);
       }
-      if (hasForward) {
-        size += pb::CodedOutputStream.ComputeMessageSize(4, Forward);
-      }
-      if (hasMinStandTime) {
-        size += pb::CodedOutputStream.ComputeFloatSize(5, MinStandTime);
-      }
-      if (hasMaxStandTime) {
-        size += pb::CodedOutputStream.ComputeFloatSize(6, MaxStandTime);
-      }
-      if (hasType) {
-        size += pb::CodedOutputStream.ComputeUInt32Size(7, Type);
-      }
-      if (hasLineCount) {
-        size += pb::CodedOutputStream.ComputeUInt32Size(8, LineCount);
-      }
-      if (hasPassLineTime) {
-        size += pb::CodedOutputStream.ComputeFloatSize(9, PassLineTime);
-      }
-      if (hasNeedOffset) {
-        size += pb::CodedOutputStream.ComputeBoolSize(10, NeedOffset);
-      }
-      if (hasOffsetValue) {
-        size += pb::CodedOutputStream.ComputeFloatSize(11, OffsetValue);
-      }
       size += UnknownFields.SerializedSize;
       memoizedSerializedSize = size;
       return size;
@@ -831,48 +656,6 @@ namespace Protocol {
           isChange = true;
           other.Position = Positioncommit;
       }
-      
-      var Forwardcommit = Forward?.CommitChange();
-      if(Forwardcommit!=null)
-      {
-          isChange = true;
-          other.Forward = Forwardcommit;
-      }
-      if (isMinStandTimeChanged) {
-        isChange = true;
-        other.MinStandTime = MinStandTime;
-        isMinStandTimeChanged = false;
-      }
-      if (isMaxStandTimeChanged) {
-        isChange = true;
-        other.MaxStandTime = MaxStandTime;
-        isMaxStandTimeChanged = false;
-      }
-      if (isTypeChanged) {
-        isChange = true;
-        other.Type = Type;
-        isTypeChanged = false;
-      }
-      if (isLineCountChanged) {
-        isChange = true;
-        other.LineCount = LineCount;
-        isLineCountChanged = false;
-      }
-      if (isPassLineTimeChanged) {
-        isChange = true;
-        other.PassLineTime = PassLineTime;
-        isPassLineTimeChanged = false;
-      }
-      if (isNeedOffsetChanged) {
-        isChange = true;
-        other.NeedOffset = NeedOffset;
-        isNeedOffsetChanged = false;
-      }
-      if (isOffsetValueChanged) {
-        isChange = true;
-        other.OffsetValue = OffsetValue;
-        isOffsetValueChanged = false;
-      }
       return isChange?other:null;
     }
     
@@ -888,32 +671,6 @@ namespace Protocol {
       if (other.HasPosition)
       {
         MergePosition(other.Position, isFull);
-      }
-      
-      if (other.HasForward)
-      {
-        MergeForward(other.Forward, isFull);
-      }
-      if (other.HasMinStandTime) {
-        MinStandTime = other.MinStandTime;
-      }
-      if (other.HasMaxStandTime) {
-        MaxStandTime = other.MaxStandTime;
-      }
-      if (other.HasType) {
-        Type = other.Type;
-      }
-      if (other.HasLineCount) {
-        LineCount = other.LineCount;
-      }
-      if (other.HasPassLineTime) {
-        PassLineTime = other.PassLineTime;
-      }
-      if (other.HasNeedOffset) {
-        NeedOffset = other.NeedOffset;
-      }
-      if (other.HasOffsetValue) {
-        OffsetValue = other.OffsetValue;
       }
     }
     
@@ -1044,30 +801,6 @@ namespace Protocol {
         if (other.HasPosition) {
           MergePosition(other.Position);
         }
-        if (other.HasForward) {
-          MergeForward(other.Forward);
-        }
-        if (other.HasMinStandTime) {
-          MinStandTime = other.MinStandTime;
-        }
-        if (other.HasMaxStandTime) {
-          MaxStandTime = other.MaxStandTime;
-        }
-        if (other.HasType) {
-          Type = other.Type;
-        }
-        if (other.HasLineCount) {
-          LineCount = other.LineCount;
-        }
-        if (other.HasPassLineTime) {
-          PassLineTime = other.PassLineTime;
-        }
-        if (other.HasNeedOffset) {
-          NeedOffset = other.NeedOffset;
-        }
-        if (other.HasOffsetValue) {
-          OffsetValue = other.OffsetValue;
-        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -1126,43 +859,6 @@ namespace Protocol {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               Position = subBuilder.BuildPartial();
-              break;
-            }
-            case 34: {
-              global::Protocol.Float3.Builder subBuilder = global::Protocol.Float3.CreateBuilder();
-              if (result.hasForward) {
-                subBuilder.MergeFrom(Forward);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              Forward = subBuilder.BuildPartial();
-              break;
-            }
-            case 45: {
-              result.hasMinStandTime = input.ReadFloat(ref result.minStandTime_);
-              break;
-            }
-            case 53: {
-              result.hasMaxStandTime = input.ReadFloat(ref result.maxStandTime_);
-              break;
-            }
-            case 56: {
-              result.hasType = input.ReadUInt32(ref result.type_);
-              break;
-            }
-            case 64: {
-              result.hasLineCount = input.ReadUInt32(ref result.lineCount_);
-              break;
-            }
-            case 77: {
-              result.hasPassLineTime = input.ReadFloat(ref result.passLineTime_);
-              break;
-            }
-            case 80: {
-              result.hasNeedOffset = input.ReadBool(ref result.needOffset_);
-              break;
-            }
-            case 93: {
-              result.hasOffsetValue = input.ReadFloat(ref result.offsetValue_);
               break;
             }
           }
@@ -1256,190 +952,6 @@ namespace Protocol {
         PrepareBuilder();
         result.hasPosition = false;
         result.position_ = null;
-        return this;
-      }
-      
-      public bool HasForward {
-       get { return result.hasForward; }
-      }
-      public global::Protocol.Float3 Forward {
-        get { return result.Forward; }
-        set { SetForward(value); }
-      }
-      public Builder SetForward(global::Protocol.Float3 value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        result.hasForward = true;
-        result.forward_ = value;
-        return this;
-      }
-      public Builder SetForward(global::Protocol.Float3.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        PrepareBuilder();
-        result.hasForward = true;
-        result.forward_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeForward(global::Protocol.Float3 value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        if (result.HasForward &&
-            result.forward_ != global::Protocol.Float3.DefaultInstance) {
-            result.forward_ = global::Protocol.Float3.CreateBuilder(result.forward_).MergeFrom(value).BuildPartial();
-        } else {
-          result.forward_ = value;
-          result.hasForward = true;
-        }
-        return this;
-      }
-      public Builder ClearForward() {
-        PrepareBuilder();
-        result.hasForward = false;
-        result.forward_ = null;
-        return this;
-      }
-      
-      public bool HasMinStandTime {
-        get { return result.hasMinStandTime; }
-      }
-      public float MinStandTime {
-        get { return result.MinStandTime; }
-        set { SetMinStandTime(value); }
-      }
-      public Builder SetMinStandTime(float value) {
-        PrepareBuilder();
-        result.hasMinStandTime = true;
-        result.minStandTime_ = value;
-        return this;
-      }
-      public Builder ClearMinStandTime() {
-        PrepareBuilder();
-        result.hasMinStandTime = false;
-        result.minStandTime_ = 0F;
-        return this;
-      }
-      
-      public bool HasMaxStandTime {
-        get { return result.hasMaxStandTime; }
-      }
-      public float MaxStandTime {
-        get { return result.MaxStandTime; }
-        set { SetMaxStandTime(value); }
-      }
-      public Builder SetMaxStandTime(float value) {
-        PrepareBuilder();
-        result.hasMaxStandTime = true;
-        result.maxStandTime_ = value;
-        return this;
-      }
-      public Builder ClearMaxStandTime() {
-        PrepareBuilder();
-        result.hasMaxStandTime = false;
-        result.maxStandTime_ = 0F;
-        return this;
-      }
-      
-      public bool HasType {
-        get { return result.hasType; }
-      }
-      [global::System.CLSCompliant(false)]
-      public uint Type {
-        get { return result.Type; }
-        set { SetType(value); }
-      }
-      [global::System.CLSCompliant(false)]
-      public Builder SetType(uint value) {
-        PrepareBuilder();
-        result.hasType = true;
-        result.type_ = value;
-        return this;
-      }
-      public Builder ClearType() {
-        PrepareBuilder();
-        result.hasType = false;
-        result.type_ = 0;
-        return this;
-      }
-      
-      public bool HasLineCount {
-        get { return result.hasLineCount; }
-      }
-      [global::System.CLSCompliant(false)]
-      public uint LineCount {
-        get { return result.LineCount; }
-        set { SetLineCount(value); }
-      }
-      [global::System.CLSCompliant(false)]
-      public Builder SetLineCount(uint value) {
-        PrepareBuilder();
-        result.hasLineCount = true;
-        result.lineCount_ = value;
-        return this;
-      }
-      public Builder ClearLineCount() {
-        PrepareBuilder();
-        result.hasLineCount = false;
-        result.lineCount_ = 0;
-        return this;
-      }
-      
-      public bool HasPassLineTime {
-        get { return result.hasPassLineTime; }
-      }
-      public float PassLineTime {
-        get { return result.PassLineTime; }
-        set { SetPassLineTime(value); }
-      }
-      public Builder SetPassLineTime(float value) {
-        PrepareBuilder();
-        result.hasPassLineTime = true;
-        result.passLineTime_ = value;
-        return this;
-      }
-      public Builder ClearPassLineTime() {
-        PrepareBuilder();
-        result.hasPassLineTime = false;
-        result.passLineTime_ = 0F;
-        return this;
-      }
-      
-      public bool HasNeedOffset {
-        get { return result.hasNeedOffset; }
-      }
-      public bool NeedOffset {
-        get { return result.NeedOffset; }
-        set { SetNeedOffset(value); }
-      }
-      public Builder SetNeedOffset(bool value) {
-        PrepareBuilder();
-        result.hasNeedOffset = true;
-        result.needOffset_ = value;
-        return this;
-      }
-      public Builder ClearNeedOffset() {
-        PrepareBuilder();
-        result.hasNeedOffset = false;
-        result.needOffset_ = false;
-        return this;
-      }
-      
-      public bool HasOffsetValue {
-        get { return result.hasOffsetValue; }
-      }
-      public float OffsetValue {
-        get { return result.OffsetValue; }
-        set { SetOffsetValue(value); }
-      }
-      public Builder SetOffsetValue(float value) {
-        PrepareBuilder();
-        result.hasOffsetValue = true;
-        result.offsetValue_ = value;
-        return this;
-      }
-      public Builder ClearOffsetValue() {
-        PrepareBuilder();
-        result.hasOffsetValue = false;
-        result.offsetValue_ = 0F;
         return this;
       }
     }

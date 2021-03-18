@@ -28,7 +28,7 @@ namespace GameEditor
         }
 
         //导出
-        public void Export(string path,string name)
+        public void Export(string path, string name)
         {
             WayMapCfg wayMapCfg = new WayMapCfg();
             AddWayMapToCfg(wayMapCfg);
@@ -50,21 +50,6 @@ namespace GameEditor
                 wayPointCfg.Id = item.ID;
                 wayPointCfg.Position = item.transform.position.ToFloat3();
                 wayPointCfg.MapId = item.mapId;
-                wayPointCfg.LineCount = item.lineCount;
-                // if (item.hasForward)
-                // {
-                //     wayPointCfg.Forward = item.transform.forward.ToFloat3();
-                // }
-                // if (item.maxStandTime != 0 || item.minStandTime != 0)
-                // {
-                //     if (item.maxStandTime >= item.minStandTime)
-                //     {
-                //         wayPointCfg.MaxStandTime = item.maxStandTime;
-                //         wayPointCfg.MinStandTime = item.minStandTime;
-                //     }
-                // }
-                // wayPointCfg.NeedOffset = item.need_offset;
-                // wayPointCfg.OffsetValue = item.offset_value;
                 wayMapCfg.AddPoints(wayPointCfg);
             }
             Debug.Log("开始导出线  ");

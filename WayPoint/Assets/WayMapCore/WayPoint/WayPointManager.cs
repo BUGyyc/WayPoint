@@ -47,22 +47,6 @@ public class WayPointManager
             vertexObj.id = item.Id;
             vertexObj.position = item.Position.ToVector3();
             vertexObj.mapId = item.MapId;
-            if (item.HasForward && item.Forward.ToVector3() != Vector3.zero)
-            {
-                vertexObj.forward = item.Forward.ToVector3();
-            }
-            if (item.HasMinStandTime && item.MinStandTime > 0)
-            {
-                vertexObj.minStandTime = item.MinStandTime;
-            }
-            if (item.HasMaxStandTime && item.MaxStandTime > 0)
-            {
-                vertexObj.maxStandTime = item.MaxStandTime;
-            }
-            vertexObj.passLineTime = item.PassLineTime;
-            vertexObj.lineCount = item.LineCount;
-            vertexObj.needOffset = item.NeedOffset;
-            vertexObj.offsetValue = item.OffsetValue;
             vertex.Data = vertexObj;
             vertexGraph.AddVertex(vertex);
         }

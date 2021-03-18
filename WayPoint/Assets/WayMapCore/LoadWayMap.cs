@@ -14,8 +14,6 @@ public class LoadWayMap : MonoBehaviour
         Debug.Log("---------------- " + levelCfg.config.PointsCount);
 
         WayPointManager.instance = new WayPointManager(levelCfg.config);
-
-        // points = new List<Vertex>();
     }
 
     // Update is called once per frame
