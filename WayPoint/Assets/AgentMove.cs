@@ -86,6 +86,7 @@ public class AgentMove : MonoBehaviour
                 {
                     moveList.Add(item.Data.position);
                 }
+                moveList.Add(hitInfo.point);
             }
         }
     }
